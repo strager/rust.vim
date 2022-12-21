@@ -19,17 +19,19 @@ if exists(':CompilerSet') != 2
     command -nargs=* CompilerSet setlocal <args>
 endif
 
+if v:false
 if exists('g:cargo_makeprg_params')
     execute 'CompilerSet makeprg=cargo\ '.escape(g:cargo_makeprg_params, ' \|"').'\ $*'
 else
     CompilerSet makeprg=cargo\ $*
 endif
+endif
 
-augroup RustCargoQuickFixHooks
-    autocmd!
-    autocmd QuickFixCmdPre make call cargo#quickfix#CmdPre()
-    autocmd QuickFixCmdPost make call cargo#quickfix#CmdPost()
-augroup END
+"augroup RustCargoQuickFixHooks
+"    autocmd!
+"    autocmd QuickFixCmdPre make call cargo#quickfix#CmdPre()
+"    autocmd QuickFixCmdPost make call cargo#quickfix#CmdPost()
+"augroup END
 
 " Ignore general cargo progress messages
 CompilerSet errorformat+=

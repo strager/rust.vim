@@ -18,6 +18,7 @@ if exists(":CompilerSet") != 2
     command -nargs=* CompilerSet setlocal <args>
 endif
 
+if v:false
 if get(g:, 'rustc_makeprg_no_percent', 0)
     CompilerSet makeprg=rustc
 else
@@ -26,6 +27,7 @@ else
     else
       CompilerSet makeprg=rustc\ \"%\"
     endif
+endif
 endif
 
 " New errorformat (after nightly 2016/08/10)
